@@ -6,7 +6,7 @@ webfont from jsDelivr.
 
 **Live:** https://souvikb93.github.io/stremliner_dell_service_blueprint/
 
-**Framer node:** `r_BbsYwDY` on `/projects/streamliner`
+**Framer node:** `iVhhBwFBm` on `/projects/streamliner`
 
 ## Using it in Framer
 
@@ -16,11 +16,26 @@ On the Embed node, switch to **URL** mode and paste:
 https://souvikb93.github.io/stremliner_dell_service_blueprint/
 ```
 
-Then set the node's **Height to Fixed, 700** — URL embeds cannot auto-measure,
+Then set the node's **Height to Fixed, 678** — URL embeds cannot auto-measure,
 and Framer will show "URL embeds do not support auto height" until you do.
 
-The file sets its own desktop height through
-`@media (min-width:900px){body{min-height:700px}}`, so the two agree.
+678 is the document's own rendered height at desktop. There is no `min-height`
+lock here, because the to-be shares its stylesheet with the as-is (see below) and
+the two boards hold different amounts of content — as-is renders at 820. If you
+add or remove a row, re-measure and update the node.
+
+## The two blueprints
+
+| Path | Board | Rendered height |
+|---|---|---|
+| `as-is/index.html` | The process before Streamliner | 820 |
+| `to-be/index.html` | The process after Streamliner | 678 |
+| `index.html` | Copy of `to-be/` — this is what the Framer node loads | 678 |
+
+Both use the **same design**: swimlane badges, coloured header strips, dashed
+blueprint dividers, yellow callouts. Only the content differs. Their stylesheets
+are byte-identical, and they should stay that way — if you restyle one, restyle
+the other, then `cp to-be/index.html index.html` so the served file follows.
 
 ## Changing it
 
